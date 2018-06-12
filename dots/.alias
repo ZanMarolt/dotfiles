@@ -1,1 +1,10 @@
-alias reload="exec $SHELL -i"
+alias lsa="ls -al"
+alias reload!=". ~/.zshrc"
+
+# Docker helpers
+alias docker/clean='docker rm $(docker ps -aq) -f'
+alias docker/cleanall/services='docker service rm $(docker service ls -q) && docker rm $(docker ps -aq) -f'
+alias docker/cleanall/images='docker rmi -f $(docker images -q)'
+alias docker/cleanall/containers='docker rm $(docker ps -aq) -f'
+alias docker/kill="osascript -e 'quit app \"Docker\"'"
+alias docker/start="open -a Docker"

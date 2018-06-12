@@ -15,7 +15,7 @@ Simply clone the repository to your favourite location, for example:
 ```shell
 git clone https://github.com/davidkuridza/dotfiles.git ~/.dotfiles
 ~/.dotfiles/bootstrap.sh
-dotfiles --all
+~/.dotfiles/bin/dotfiles --all
 ```
 
 ## How does it work?
@@ -40,44 +40,13 @@ dotfiles --all
 └── macos.sh
 ```
 
-### bin
-
-`bin` directory is in the `$PATH`, making its executable scripts available everywhere.
-
-### custom
-
-All the sensitive data can be added to `custom` directory. For example, you can use a private VCS cloned to `custom` containing dotfiles with secrets (e.g. tokens, password etc) and other things which should not be exposed to the public.
-
-```
-custom
-├── bin
-│   └── ... <-- executable scripts
-├── dots
-│   ├── .alias.local
-│   ├── .exports.local
-│   └── ... <-- actual dotfiles
-├── Brewfile
-├── Caskfile
-├── Gofile
-├── Masfile
-└── provision.sh
-```
-
-Tailored provisioning can be done in `provision.sh`, the rest of the files and directories are used automatically.
-
 ### dots
 
 All the files and directories starting with a `.` are symlinked to `$HOME`.
 
-### Brewfile, Caskfile, Gofile, Masfile
+### Brewfile, Caskfile
 
-Each file contains a list of packages to be installed with `brew`, `brew cask`, `go get` and `mas` respectively.
-
-## Inspiration
-
-* <https://github.com/mathiasbynens/dotfiles>
-* whole bunch of other places I don't remember
-* and +20 years of experience and simplification :)
+Each file contains a list of packages to be installed with `brew`, `brew cask` respectively.
 
 ## License
 

@@ -1,43 +1,23 @@
 [user]
-useConfigOnly = true
-name          = David Kuridža
-
-[color]
-diff   = auto
-status = auto
-branch = auto
-ui     = true
-
+        name = Zan Marolt
+        email = zan.marolt@3fs.si
 [core]
-autocrlf   = false
-filemode   = false
-editor     = vim
-trustctime = false
-
-[gui]
-encoding = utf-8
-
+        excludesfile = /Users/zanmarolt/.gitignore_global
 [push]
-default = nothing
-
-[branch]
-autosetupmerge = always
+        # prevents your from accidentally pushing to a wrong branch
+        default = nothing
 
 [alias]
-db     = log --oneline --no-merges
-dc     = diff --cached
-co     = checkout
-ci     = commit
-cm     = commit -m
-st     = status
-br     = branch
-lg     = !git log --graph --pretty='format:%C(yellow)%h%C(reset) -%C(red)%d%C(reset) %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
-slog   = log --oneline
-rb     = rebase
-rbc    = rebase --continue
-rbi    = rebase -i
-fap    = fetch --all --prune --progress
-latest = for-each-ref --sort=-committerdate refs/heads refs/remotes --format='%(committerdate:iso8601)  %(refname:short)                        %(authorname)'
-
-[commit]
-gpgsign = true
+        dc     = diff --cached
+        co     = checkout
+        ci     = commit
+        cm     = commit -m
+        st     = status
+        br     = branch
+        lg     = !git log --graph --pretty='format:%C(yellow)%h%C(reset) -%C(red)%d%C(reset) %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+        slog   = log --oneline
+        rb     = rebase
+        rbc    = rebase --continue
+        rbi    = rebase -i
+        fap    = fetch --all --prune --progress
+        latest = for-each-ref --sort=-committerdate refs/heads refs/remotes --format='%(committerdate:iso8601)  %(refname:short)                        %(authorname)'

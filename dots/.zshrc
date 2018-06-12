@@ -7,7 +7,7 @@ export ZSH=${HOME}/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="refined"
+ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -51,7 +51,6 @@ ZSH_THEME="refined"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(docker git golang tig)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -89,16 +88,3 @@ for file in ~/.{alias,alias.local,exports,exports.local}; do
     [ -r "${file}" ] && [ -f "${file}" ] && source "${file}";
 done;
 unset file;
-
-# In order for gpg to find gpg-agent, gpg-agent must be running,
-# and there must be an env variable pointing GPG to the gpg-agent socket.
-if [ -S ~/.gnupg/S.gpg-agent ] && [ -n "$(pgrep gpg-agent)" ]; then
-    export GPG_AGENT_INFO=~/.gnupg/S.gpg-agent
-else
-    eval $(gpg-agent --daemon)
-fi
-
-# fuzzy finder
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-eval "$(direnv hook zsh)"

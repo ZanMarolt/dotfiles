@@ -13,22 +13,12 @@ Usage: $(basename "$0") [OPTIONS]
     $(basename "$0") --all --no-os
     $(basename "$0") --brew --brew-cask
 
-Mac App Store requires Apple ID, it can be passed as:
-
-    MAS_UID=my-apple-id $(basename "$0") --all
-    MAS_UID=my-apple-id $(basename "$0") --mas --dots
-
     --help              Show this message
-    --all               Install dependencies, brew, brew cask and Golang
-                        packages, setup configuration
+    --all               Install dependencies, brew, brew cask and setup configuration
     --[no-]brew         Provision brew packages
     --[no-]brew-cask    Provision brew cask packages
-    --[no-]custom       Use custom provisioning (i.e. from ./custom)
     --[no-]deps         Provision dependencies (brew, oh-my-zsh)
     --[no-]dots         Provision shell and other configuration
-    --[no-]fzf          Provision command line fuzzy finder
-    --[no-]go           Provision Golang packages
-    --[no-]mas <id>     Provision Mas packages
     --[no-]os           Provision operating system
 EOF
 }
@@ -55,12 +45,8 @@ makedir() { # destination
 
 cfg_brew=0
 cfg_brew_cask=0
-cfg_custom=0
 cfg_deps=0
 cfg_dots=0
-cfg_fzf=0
-cfg_go=0
-cfg_mas=0
 cfg_os=0
 
 test $# -eq 0 && help && exit 0
@@ -73,30 +59,18 @@ for opt in "$@"; do
         --all)
             cfg_brew=1
             cfg_brew_cask=1
-            cfg_custom=1
             cfg_deps=1
             cfg_dots=1
-            cfg_fzf=1
-            cfg_go=1
-            cfg_mas=1
             cfg_os=1
         ;;
         --brew)         cfg_brew=1      ;;
         --no-brew)      cfg_brew=0      ;;
         --brew-cask)    cfg_brew_cask=1 ;;
         --no-brew-cask) cfg_brew_cask=0 ;;
-        --custom)       cfg_custom=1    ;;
-        --no-custom)    cfg_custom=0    ;;
         --deps)         cfg_deps=1      ;;
         --no-deps)      cfg_deps=0      ;;
         --dots)         cfg_dots=1      ;;
         --no-dots)      cfg_dots=0      ;;
-        --fzf)          cfg_fzf=1       ;;
-        --no-fzf)       cfg_fzf=0       ;;
-        --go)           cfg_go=1        ;;
-        --no-go)        cfg_go=0        ;;
-        --mas)          cfg_mas=1       ;;
-        --no-mas)       cfg_mas=0       ;;
         --os)           cfg_os=1        ;;
         --no-os)        cfg_os=0        ;;
         *)
@@ -105,9 +79,6 @@ for opt in "$@"; do
         ;;
     esac
 done
-
-# ensure MAS_UID is set
-test ${cfg_mas} -eq 1 && test -z ${MAS_UID:-} && help && exit 1
 
 cd "$(dirname "${0}")/.."
 
@@ -169,35 +140,7 @@ if [ ${cfg_brew_cask} -eq 1 ]; then
     done
 fi
 
-if [ ${cfg_mas} -eq 1 ]; then
-    header "Install Mas packages"
-    test "$(mas account)" == "${MAS_UID}" || mas signin "${MAS_UID}"
-    find . custom -maxdepth 1 -type f -name Masfile -exec cat {} \; 2>/dev/null | while read -r pkg; do
-        mas install "$(echo ${pkg} | cut -d ' ' -f 1)"
-    done
-fi
-
-if [ ${cfg_go} -eq 1 ]; then
-    # ensure go packages
-    header "Installing Go packages"
-    find . custom -maxdepth 1 -type f -name Gofile -exec cat {} \; 2>/dev/null | while read -r pkg; do
-        echo "Installing package \033[0;33m${pkg}\033[0m"
-        go get -u ${pkg}
-    done
-fi
-
-if [ ${cfg_fzf} -eq 1 ]; then
-    # fuzzy finder (fzf)
-    header "Installing fzf bindings"
-    /usr/local/opt/fzf/install --key-bindings --completion --no-update-rc
-fi
-
 # operating system
 if [ ${cfg_os} -eq 1 ]; then
     source ./macos.sh
-fi
-
-# custom provisioning
-if [ ${cfg_custom} -eq 1 ]; then
-    test -f ./custom/provision.sh && source ./custom/provision.sh
 fi
