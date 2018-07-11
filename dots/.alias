@@ -1,5 +1,6 @@
 alias lsa="ls -al"
 alias reload!=". ~/.zshrc"
+alias open-ports="lsof -i -P -n | grep LISTEN "
 
 # Docker helpers
 alias docker/clean='docker rm $(docker ps -aq) -f'

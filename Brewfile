@@ -5,3 +5,4 @@ wget
 mongodb
 postgresql
 magic-wormhole
+yarn --without-node
