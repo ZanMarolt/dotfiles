@@ -2,6 +2,7 @@ alias lsa="ls -al"
 alias reload!=". ~/.zshrc"
 alias open-ports="lsof -i -P -n | grep LISTEN "
 alias cwd='printf "%q\n" "$(pwd)"'
+alias date-fmt='date +"%d-%m-%Y" | pbcopy'
 
 # Docker helpers
 alias docker/clean='docker rm $(docker ps -aq) -f'

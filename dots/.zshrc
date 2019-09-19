@@ -2,8 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # ZSH Plugins
-# Custom autocomplete https://github.com/zsh-users/zsh-autosuggestions
-plugins=(wakeonlan yarn docker tmux zsh-autosuggestions)
+plugins=(wakeonlan yarn docker tmux)
 
 # Path to your oh-my-zsh installation.
 export ZSH=${HOME}/.oh-my-zsh
