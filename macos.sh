@@ -58,6 +58,11 @@ defaults write com.apple.screensaver askForPasswordDelay -int 0
 # Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
 defaults write com.apple.screencapture type -string "png"
 
+# Show sound and button icons in menu bar
+defaults write com.apple.systemuiserver menuExtras -array \
+"/System/Library/CoreServices/Menu Extras/Volume.menu" \
+"/System/Library/CoreServices/Menu Extras/Bluetooth.menu"
+
 ###############################################################################
 # Finder                                                                      #
 ###############################################################################
