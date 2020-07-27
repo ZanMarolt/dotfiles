@@ -10,3 +10,4 @@ ripgrep
 tmux
 wakeonlan
 tig
+dive
