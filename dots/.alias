@@ -11,3 +11,11 @@ alias docker/cleanall/images='docker rmi -f $(docker images -q)'
 alias docker/cleanall/containers='docker rm $(docker ps -aq) -f'
 alias docker/kill="osascript -e 'quit app \"Docker\"'"
 alias docker/start="open -a Docker"
+
+# GIT helpers
+alias git/clean/branches="git branch | fzf --multi --bind 'ctrl-a:select-all' | xargs git branch -D"
+
+# WRM Helpers
+alias mr-desc='git log origin..$(git rev-parse --abbrev-ref HEAD) | grep -v "^commit\|Author:\|Date:" | pbcopy'
+wrm/seed() { make -C $IOTAMH_MIGRATIONS_LOCATION seed }
+
