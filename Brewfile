@@ -5,7 +5,7 @@ wget
 mongodb
 postgresql
 magic-wormhole
-yarn --without-node
+yarn --ignore-dependencies
 ripgrep
 tmux
 wakeonlan
