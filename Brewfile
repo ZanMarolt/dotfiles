@@ -2,12 +2,10 @@ git
 python
 sqlite
 wget
-mongodb
+mongodb-community
 postgresql
 magic-wormhole
-yarn --ignore-dependencies
 ripgrep
 tmux
 wakeonlan
 tig
-dive
