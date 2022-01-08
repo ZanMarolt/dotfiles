@@ -9,3 +9,4 @@ ripgrep
 tmux
 wakeonlan
 tig
+gh
