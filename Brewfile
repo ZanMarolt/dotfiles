@@ -10,3 +10,4 @@ tmux
 wakeonlan
 tig
 gh
+fzf
