@@ -4,10 +4,11 @@
 [core]
         excludesfile = /Users/zanmarolt/.gitignore_global
 [push]
-        # prevents your from accidentally pushing to a wrong branch
+        # prevents you from accidentally pushing to a wrong branch
         default = nothing
 
 [alias]
+        psf    = push --force-with-lease
         dc     = diff --cached
         co     = checkout
         ci     = commit
